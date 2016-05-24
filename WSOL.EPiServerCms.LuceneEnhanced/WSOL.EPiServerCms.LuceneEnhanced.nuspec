@@ -13,8 +13,8 @@
     <tags>WSOL EPiServer Search Lucene</tags>
   </metadata>
   <files>
-    <!--<file src="WSOL.EPiServerCms.Web.zip" target="content\modules\_protected\WSOL.EPiServerCms.Web\" />
-    <file src="WSOL.EPiServerCms.Web\*.config" target="content\modules\_protected\WSOL.EPiServerCms.Web\" />-->
+    <file src="WSOL.EPiServerCms.LuceneEnhanced.zip" target="content\modules\_protected\WSOL.EPiServerCms.LuceneEnhanced\" />
+    <file src="WSOL.EPiServerCms.LuceneEnhanced\*.config" target="content\modules\_protected\WSOL.EPiServerCms.LuceneEnhanced\" />
     <file src="readme.txt" target="readme.txt" />
   </files>
 </package>

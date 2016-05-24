@@ -93,10 +93,6 @@
       <HintPath>..\packages\EPiServer.CMS.Core.9.0.0\lib\net45\EPiServer.LinkAnalyzer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EPiServer.Logging.Log4Net, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\packages\EPiServer.Logging.Log4Net.1.1.0\lib\net45\EPiServer.Logging.Log4Net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EPiServer.Search.IndexingService, Version=8.0.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\packages\EPiServer.Search.8.0.0\lib\net45\EPiServer.Search.IndexingService.dll</HintPath>
       <Private>True</Private>
@@ -115,10 +111,6 @@
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
@@ -188,29 +180,27 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="WSOL.EPiServerCms.LuceneEnhanced\Views\SearchIndexer\Index.ascx" />
     <None Include="gulpfile.custom.js" />
     <None Include="gulpfile.js" />
     <Content Include="IndexingService\IndexingService.svc" />
     <Content Include="packages.config" />
     <None Include="AutoVersion.config" />
     <None Include="package.json" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
     <None Include="WSOL.EPiServerCms.LuceneEnhanced.nuspec" />
+    <None Include="WSOL.EPiServerCms.LuceneEnhanced\module.config" />
+    <None Include="WSOL.EPiServerCms.LuceneEnhanced\web.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.txt" />
     <None Include="releasenotes.txt" />
-    <Content Include="Web.config" />
+    <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analyzers\CaseInsensitiveWhitespaceAnalyzer.cs" />
     <Compile Include="BytesToStringConverter.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Controllers\SearchIndexerController.cs" />
     <Compile Include="IBytesToStringConverter.cs" />
     <Compile Include="IInitializeSearchAnalyzers.cs" />
     <Compile Include="Initialization\ClearSearchItemInitialization.cs" />
@@ -223,11 +213,20 @@
     <Compile Include="Initialization\ContainerInitialization.cs" />
     <Compile Include="ICustomSearchText.cs" />
     <Compile Include="IMediaReader.cs" />
+    <Compile Include="Models\ViewModels\SearchIndexData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchAnalyzers.cs" />
     <Compile Include="Initialization\SearchServiceInitialization.cs" />
+    <Compile Include="WSOL.EPiServerCms.LuceneEnhanced\Views\SearchIndexer\Index.ascx.cs">
+      <DependentUpon>Index.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WSOL.EPiServerCms.LuceneEnhanced\Views\SearchIndexer\Index.ascx.designer.cs">
+      <DependentUpon>Index.ascx</DependentUpon>
+    </Compile>
     <Compile Include="_Notes.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -260,6 +259,10 @@
     <Error Condition="!Exists('..\packages\WSOL.MSBuild.AutoVersion.Git.2.3.0\build\WSOL.MsBuild.AutoVersion.Git.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WSOL.MSBuild.AutoVersion.Git.2.3.0\build\WSOL.MsBuild.AutoVersion.Git.targets'))" />
   </Target>
   <Import Project="..\packages\WSOL.MSBuild.AutoVersion.Git.2.3.0\build\WSOL.MsBuild.AutoVersion.Git.targets" Condition="Exists('..\packages\WSOL.MSBuild.AutoVersion.Git.2.3.0\build\WSOL.MsBuild.AutoVersion.Git.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>powershell.exe -nologo -noprofile -ExecutionPolicy Bypass -command "&amp; { if (Test-Path ..\$(ProjectName).zip) { Remove-Item ..\$(ProjectName).zip } }"
+powershell.exe -nologo -noprofile -ExecutionPolicy Bypass -command "&amp; { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::CreateFromDirectory('..\$(ProjectName)', '..\$(ProjectName).zip'); }"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
