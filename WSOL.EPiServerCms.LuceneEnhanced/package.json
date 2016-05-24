@@ -1,0 +1,16 @@
+{
+  "name": "asp.net",
+  "version": "1.0.0",
+  "description": "",
+  "devDependencies": {
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-msbuild": "^0.3.2",
+    "gulp-mstest": "^0.1.0",
+    "gulp-nuget": "^1.0.0",
+    "ordered-merge-stream": "1.0.0",
+    "slack-node": "^0.2.0",
+    "parse-git-config": "^0.4.2",
+    "strip-json-comments": "^2.0.1"
+  }
+}

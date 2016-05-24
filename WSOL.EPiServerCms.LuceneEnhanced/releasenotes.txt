@@ -1,0 +1,1 @@
+﻿# WSOL.EPiServerCms.LuceneEnhanced Release Notes
