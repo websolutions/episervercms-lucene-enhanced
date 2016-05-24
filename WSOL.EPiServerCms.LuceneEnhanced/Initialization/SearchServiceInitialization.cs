@@ -8,9 +8,9 @@
     [ModuleDependency(typeof(ContainerInitialization))]
     public class SearchServiceInitialization : IInitializableModule
     {
-        private static Injected<ISearchAnalyzers> _Analyzers { get; set; }
+        private static Injected<ISearchAnalyzers> _Analyzers { get; }
 
-        private static Injected<IInitializeSearchAnalyzers> _InitializeService { get; set; }
+        private static Injected<IInitializeSearchAnalyzers> _InitializeService { get; }
 
         public void Initialize(InitializationEngine context)
         {
