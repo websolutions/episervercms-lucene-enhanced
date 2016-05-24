@@ -7,7 +7,7 @@
     <% using (Html.BeginGadgetForm("Index", "SearchIndexer"))
        { %>
     <div class="editor-field">
-        <label for="resetIndex">Delete old data</label>
+        <label for="resetIndex">Delete old data:</label>
         <input type="checkbox" name="resetIndex" id="resetIndex" value="reset" <%: Model.IndexInformation.ResetIndex ? "checked" : "" %> />
         <br />
         <button type="submit">Start Indexing</button>

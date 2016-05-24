@@ -217,13 +217,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchAnalyzers.cs" />
     <Compile Include="Initialization\SearchServiceInitialization.cs" />
-    <Compile Include="WSOL.EPiServerCms.LuceneEnhanced\Views\SearchIndexer\Index.ascx.cs">
-      <DependentUpon>Index.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WSOL.EPiServerCms.LuceneEnhanced\Views\SearchIndexer\Index.ascx.designer.cs">
-      <DependentUpon>Index.ascx</DependentUpon>
-    </Compile>
     <Compile Include="_Notes.cs" />
   </ItemGroup>
   <ItemGroup />
