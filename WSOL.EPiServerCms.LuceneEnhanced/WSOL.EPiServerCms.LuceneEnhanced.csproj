@@ -207,16 +207,20 @@
     <Compile Include="Initialization\DocumentAddingInitialization.cs" />
     <Compile Include="InitializeSearchAnalyzers.cs" />
     <Compile Include="ISearchAnalyzers.cs" />
+    <Compile Include="ISiteSearchService.cs" />
     <Compile Include="MediaReader.cs" />
     <Compile Include="CustomSearchText.cs" />
     <Compile Include="Extensions\DocumentExtensions.cs" />
     <Compile Include="Initialization\ContainerInitialization.cs" />
     <Compile Include="ICustomSearchText.cs" />
     <Compile Include="IMediaReader.cs" />
+    <Compile Include="Models\SearchServiceFilter.cs" />
+    <Compile Include="Models\ViewModels\SearchHitData.cs" />
     <Compile Include="Models\ViewModels\SearchIndexData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchAnalyzers.cs" />
     <Compile Include="Initialization\SearchServiceInitialization.cs" />
+    <Compile Include="SiteSearchService.cs" />
     <Compile Include="_Notes.cs" />
   </ItemGroup>
   <ItemGroup />

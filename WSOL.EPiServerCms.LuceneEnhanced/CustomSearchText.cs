@@ -2,6 +2,7 @@
 {
     using EPiServer.Core;
     using EPiServer.ServiceLocation;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Default service only reads blobs from MediaData object, can be customized for other types as well
@@ -27,7 +28,10 @@
 
                 if (bytes != null)
                 {
-                    return _ByteConverter.Service.ConvertToString(bytes)?.Trim();
+                    var text = _ByteConverter.Service.ConvertToString(bytes)?.Trim();
+
+                    if (!string.IsNullOrWhiteSpace(text))
+                        return Regex.Replace(text, @"<(.|\n)*?>", string.Empty);
                 }
             }
 

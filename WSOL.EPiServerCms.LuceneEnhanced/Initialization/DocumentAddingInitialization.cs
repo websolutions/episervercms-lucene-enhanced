@@ -46,6 +46,8 @@
             string text = string.Empty;
             var content = document.GetContent<IContent>();
 
+            // TODO: Add hook into add additional fields
+
             try
             {
                 text = _CustomSearchText.Service.GetCustomSearchText(content);
@@ -60,7 +62,7 @@
 
             // Add found data to default field value
             var field = document.GetField(Constants.EpiserverDefaultSearchField);
-            field.SetValue($"{field.StringValue} {text}");
+            field.SetValue($"{field.StringValue} {text}");            
 
             //document.Add(new Field("WSOL_SEARCH_FIELD", text, Field.Store.NO, Field.Index.ANALYZED));
         }
