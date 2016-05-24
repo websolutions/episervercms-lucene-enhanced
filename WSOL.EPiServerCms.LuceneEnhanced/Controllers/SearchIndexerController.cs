@@ -12,7 +12,7 @@
     using System.Threading;
     using System.Web.Mvc;
 
-    [Gadget(Name = "ReIndex Content", Title = "ReIndex Content")]
+    [Gadget(Name = "Index Site Content", Title = "Index Site Content", Description = "This tool will go through all the content and files on the site and add them to the search index.")]
     [Authorize(Roles = "CommerceAdmins, WebAdmins, Administrators")]
     //[EPiServer.Shell.Web.ScriptResource("Scripts/StoreExport.js")]
     public class SearchIndexerController : Controller

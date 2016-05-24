@@ -15,7 +15,7 @@
 
         public virtual Type[] IncludeContentTypes { get; set; }
 
-        public virtual string LanguageBranch { get; set; }
+        public virtual string LanguageBranch { get; set; } = "en";
 
         public virtual int PageNumber { get; set; } = 1;
 
