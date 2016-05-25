@@ -33,6 +33,16 @@
 
             return View(model);
         }
+        
+        internal SearchIndexData ReIndexContent(bool reset)
+        {
+            if (SearchSettings.Config.Active)
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(ReIndex), reset);
+            }
+
+            return GetModel();
+        }
 
         private SearchIndexData GetModel(bool posted = false)
         {
