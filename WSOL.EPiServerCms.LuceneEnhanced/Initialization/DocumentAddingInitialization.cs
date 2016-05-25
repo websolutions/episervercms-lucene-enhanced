@@ -14,7 +14,7 @@
     {
         private readonly ILogger _Logger = LogManager.GetLogger(typeof(DocumentAddingInitialization));
 
-        private static Injected<ICustomSearchText> _CustomSearchText { get; }
+        private static Injected<IIndexCustomSearchText> _CustomSearchText { get; }
 
         private static Injected<IExtendSearchDocument> _ExtendDocument { get; }
 

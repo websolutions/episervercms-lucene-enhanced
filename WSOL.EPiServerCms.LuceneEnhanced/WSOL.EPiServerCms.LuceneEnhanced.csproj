@@ -203,6 +203,7 @@
     <Compile Include="Controllers\SearchIndexerController.cs" />
     <Compile Include="ExtendSearchDocument.cs" />
     <Compile Include="IBytesToStringConverter.cs" />
+    <Compile Include="ICustomSearchText.cs" />
     <Compile Include="IExtendSearchDocument.cs" />
     <Compile Include="IInitializeSearchAnalyzers.cs" />
     <Compile Include="Initialization\ClearSearchItemInitialization.cs" />
@@ -211,10 +212,10 @@
     <Compile Include="ISearchAnalyzers.cs" />
     <Compile Include="ISiteSearchService.cs" />
     <Compile Include="MediaReader.cs" />
-    <Compile Include="CustomSearchText.cs" />
+    <Compile Include="IndexCustomSearchText.cs" />
     <Compile Include="Extensions\DocumentExtensions.cs" />
     <Compile Include="Initialization\ContainerInitialization.cs" />
-    <Compile Include="ICustomSearchText.cs" />
+    <Compile Include="IIndexCustomSearchText.cs" />
     <Compile Include="IMediaReader.cs" />
     <Compile Include="Models\SearchServiceFilter.cs" />
     <Compile Include="Models\ViewModels\SearchHitData.cs" />
