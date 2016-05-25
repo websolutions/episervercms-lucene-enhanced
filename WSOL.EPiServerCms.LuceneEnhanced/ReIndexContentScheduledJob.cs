@@ -1,8 +1,8 @@
 ﻿namespace WSOL.EPiServerCms.LuceneEnhanced
 {
+    using EPiServer.BaseLibrary.Scheduling;
     using EPiServer.DataAbstraction;
     using EPiServer.PlugIn;
-    using EPiServer.Scheduler;
     using EPiServer.Security;
     using System.Security.Principal;
     using System.Web;
@@ -15,7 +15,7 @@
         InitialTime = "999.0:0:0",
         IntervalLength = 1440,
         IntervalType = ScheduledIntervalType.Months)]
-    public class ReIndexContentScheduledJob : ScheduledJobBase
+    public class ReIndexContentScheduledJob : JobBase
     {
         public override string Execute()
         {
