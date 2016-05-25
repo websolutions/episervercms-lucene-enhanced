@@ -1,5 +1,7 @@
 ﻿# WSOL.EPiServerCms.LuceneEnhanced Release Notes
 
+Episerver 8 version.
+
 Please review the package readme.txt for code example to index PDF documents.
 
 ## Important
