@@ -25,5 +25,7 @@
             new[] { SiteDefinition.Current.StartPage, SiteDefinition.Current.GlobalAssetsRoot, SiteDefinition.Current.SiteAssetsRoot };
 
         public virtual string SearchText { get; set; }
+
+        public virtual bool AllowWildcards { get; set; }
     }
 }

@@ -27,24 +27,40 @@
         public virtual SearchResults Search(HttpContextBase context, SearchServiceFilter filter) =>
             _searchHandler.GetSearchResults(CreateQuery(filter, context), filter.PageNumber, filter.RecordsPerPage);
 
+        protected virtual string AddTrailingWildcards(string query)
+        {
+            char[] chrArray = new char[] { '*', ' ' };
+
+            if (query.IndexOfAny(chrArray) >= 0)
+            {
+                return query;
+            }
+
+            return string.Concat(query, "*");
+        }
+
         protected virtual IQueryExpression CreateQuery(SearchServiceFilter filter, HttpContextBase context)
-        {            
+        {
+            if (string.IsNullOrEmpty(filter?.SearchText))
+                throw new ArgumentException($"{nameof(filter)} has no search text set!");
+
             var query = new GroupQuery(LuceneOperator.AND);
 
-            // Term
-            query.QueryExpressions.Add(new FuzzyQuery(filter.SearchText, filter.FuzzySimilarityFactor));
+            if (!filter.AllowWildcards)
+            {
+                query.QueryExpressions.Add(new FuzzyQuery(filter.SearchText, filter.FuzzySimilarityFactor));
+            }
+            else
+            {
+                var keywordQuery = new GroupQuery(LuceneOperator.OR);
+                keywordQuery.QueryExpressions.Add(new FuzzyQuery(filter.SearchText.Replace("*", ""), filter.FuzzySimilarityFactor));
+                keywordQuery.QueryExpressions.Add(new FieldQuery(AddTrailingWildcards(filter.SearchText)));
 
-            #region Example of custom field search
+                // Search in custom field and boost the importance of any hits
+                //keywordQuery.QueryExpressions.Add(new CustomFieldQuery(searchText, "WSOL_SEARCH_FIELD", 2.0f));
 
-            //var keywordQuery = new GroupQuery(LuceneOperator.OR);
-
-            //Add free text query to the main query
-            //keywordQuery.QueryExpressions.Add(new FuzzyQuery(filter.SearchText, 0.8f));
-
-            // Search in custom field and boost the importance of any hits
-            //keywordQuery.QueryExpressions.Add(new CustomFieldQuery(searchText, "WSOL_SEARCH_FIELD", 2.0f));
-
-            #endregion
+                query.QueryExpressions.Add(keywordQuery);
+            }            
 
             string language = filter?.LanguageBranch ?? "en";
             
