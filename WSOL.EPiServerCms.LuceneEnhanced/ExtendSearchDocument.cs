@@ -7,7 +7,8 @@
     {
         public virtual void CustomizeDocument(Document document, IContent content)
         {
-            document.Add(new Field("WSOL_SEARCH_FIELD", "bsm", Field.Store.NO, Field.Index.ANALYZED));
+            // Example of new field
+            //document.Add(new Field("WSOL_SEARCH_FIELD", "bsm", Field.Store.NO, Field.Index.ANALYZED));
         }
     }
 }
