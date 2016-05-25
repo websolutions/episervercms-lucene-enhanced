@@ -201,6 +201,7 @@
     <Compile Include="BytesToStringConverter.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\SearchIndexerController.cs" />
+    <Compile Include="CustomFieldQuery.cs" />
     <Compile Include="ExtendSearchDocument.cs" />
     <Compile Include="IBytesToStringConverter.cs" />
     <Compile Include="ICustomSearchText.cs" />

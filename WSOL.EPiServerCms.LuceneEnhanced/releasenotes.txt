@@ -1,1 +1,16 @@
 ﻿# WSOL.EPiServerCms.LuceneEnhanced Release Notes
+
+Please review the package readme.txt for code example to index PDF documents.
+
+## Important
+
+For MediaData types to get indexed please use the SearchDocumentIndexer InitializationModule example in the readme.txt document
+
+## Noteable extensibile areas
+
+* IBytesToStringConverter: used to convert MediaData objects to their string contents
+* ICustomSearchText: can be applied to any IContent model that provides an additional string of indexable data, for instance ContentArea properties
+* IExtendSearchDocument: allows creation of custom lucene fields to index
+* ISiteSearchService: change default site search behaviour, or simple create your own class for your search page controller
+* ISearchAnalyzers: change default index analyzers, for example the default text analyzer of this package is a whitespace tokenizer to allow hyphenated words.
+* IInitializeSearchAnalyzers: change how defaut fields are analyzed.
