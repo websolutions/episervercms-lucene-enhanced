@@ -8,11 +8,11 @@
     using System.Web;
 
     [ScheduledPlugIn(
-        DisplayName = "[wsol] Re-Index Site Content",
+        DisplayName = "[wsol]Re-Index Site Content",
         Description = "This tool will go through all the content and files on the site and add them to the search index.",
         SortIndex = 9999,
         DefaultEnabled = true,
-        InitialTime = "4.0:0:0",
+        InitialTime = "999.0:0:0",
         IntervalLength = 1440,
         IntervalType = ScheduledIntervalType.Months)]
     public class ReIndexContentScheduledJob : ScheduledJobBase
@@ -30,7 +30,7 @@
 
             var data = new Controllers.SearchIndexerController().ReIndexContent(true);
 
-            return $"Latest complete indexing: {data.IndexInformation.ExecutionDate}";
+            return $"Latest complete indexing: {data.IndexInformation.ExecutionDate}, A new index job has been queued!";
         }
     }
 }

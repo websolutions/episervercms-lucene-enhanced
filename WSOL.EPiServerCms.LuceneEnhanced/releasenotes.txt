@@ -8,6 +8,8 @@ For MediaData types to get indexed please use the SearchDocumentIndexer Initiali
 
 Includes an initialization module to remove content models that implement the ISearchable module and return false.
 
+A scheduled job [wsol]Re-Index Site Content, has been included, please configure a desired interval or disable as this job always deletes the current index!
+
 ## Noteable extensibile areas
 
 * IBytesToStringConverter: used to convert MediaData objects to their string contents
