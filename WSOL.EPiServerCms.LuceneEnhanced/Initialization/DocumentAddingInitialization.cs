@@ -16,6 +16,8 @@
 
         private static Injected<ICustomSearchText> _CustomSearchText { get; }
 
+        private static Injected<IExtendSearchDocument> _ExtendDocument { get; }
+
         public void Initialize(InitializationEngine context)
         {
             IndexingService.DocumentAdding += IndexingService_DocumentAdding;
@@ -45,11 +47,11 @@
 
             string text = string.Empty;
             var content = document.GetContent<IContent>();
-
-            // TODO: Add hook into add additional fields
-
+            
             try
             {
+                _ExtendDocument.Service.CustomizeDocument(document, content);
+
                 text = _CustomSearchText.Service.GetCustomSearchText(content);
             }
             catch (Exception ex)
@@ -62,9 +64,7 @@
 
             // Add found data to default field value
             var field = document.GetField(Constants.EpiserverDefaultSearchField);
-            field.SetValue($"{field.StringValue} {text}");            
-
-            //document.Add(new Field("WSOL_SEARCH_FIELD", text, Field.Store.NO, Field.Index.ANALYZED));
+            field.SetValue($"{field.StringValue} {text}");
         }
     }
 }

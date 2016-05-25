@@ -2,6 +2,6 @@
 {
     public interface IBytesToStringConverter
     {
-        string ConvertToString(byte[] bytes);
+        string ConvertToString(byte[] bytes, string mimeType);
     }
 }

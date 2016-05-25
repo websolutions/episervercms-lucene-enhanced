@@ -28,7 +28,7 @@
 
                 if (bytes != null)
                 {
-                    var text = _ByteConverter.Service.ConvertToString(bytes)?.Trim();
+                    var text = _ByteConverter.Service.ConvertToString(bytes, searchableDoc.MimeType)?.Trim();
 
                     if (!string.IsNullOrWhiteSpace(text))
                         return Regex.Replace(text, @"<(.|\n)*?>", string.Empty);

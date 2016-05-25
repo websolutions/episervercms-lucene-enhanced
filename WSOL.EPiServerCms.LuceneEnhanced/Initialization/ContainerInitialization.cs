@@ -15,8 +15,9 @@
                 x.For<IBytesToStringConverter>().Singleton().Use<BytesToStringConverter>();
                 x.For<IMediaReader>().Singleton().Use<MediaReader>();
                 x.For<ICustomSearchText>().Singleton().Use<CustomSearchText>();
+                x.For<IExtendSearchDocument>().Singleton().Use<ExtendSearchDocument>();
+                x.For<ISearchAnalyzers>().Singleton().Use<SearchAnalyzers>();
 
-                x.For<ISearchAnalyzers>().Use<SearchAnalyzers>();
                 x.For<IInitializeSearchAnalyzers>().Use<InitializeSearchAnalyzers>();
                 x.For<ISiteSearchService>().Use<SiteSearchService>();
             });

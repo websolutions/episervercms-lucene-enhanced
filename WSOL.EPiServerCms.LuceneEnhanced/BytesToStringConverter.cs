@@ -5,6 +5,6 @@
     /// </summary>
     public class BytesToStringConverter : IBytesToStringConverter
     {
-        public virtual string ConvertToString(byte[] bytes) => null;
+        public virtual string ConvertToString(byte[] bytes, string mimeType) => null;
     }
 }

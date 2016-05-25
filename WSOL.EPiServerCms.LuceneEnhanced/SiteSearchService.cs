@@ -45,13 +45,15 @@
             //keywordQuery.QueryExpressions.Add(new CustomFieldQuery(searchText, "WSOL_SEARCH_FIELD", 2.0f));
 
             #endregion
+
+            string language = filter?.LanguageBranch ?? "en";
             
             //Search for pages using the provided language if specific types aren't set
             if (filter.IncludeContentTypes == null || filter.IncludeContentTypes.Length == 0)
             {
                 var pageTypeQuery = new GroupQuery(LuceneOperator.AND);
                 pageTypeQuery.QueryExpressions.Add(new ContentQuery<PageData>());
-                pageTypeQuery.QueryExpressions.Add(new FieldQuery(filter.LanguageBranch, Field.Culture));
+                pageTypeQuery.QueryExpressions.Add(new FieldQuery(language, Field.Culture));
 
                 //Search for media without languages
                 var contentTypeQuery = new GroupQuery(LuceneOperator.OR);
@@ -70,7 +72,7 @@
                 {
                     var typeQuery = new GroupQuery(LuceneOperator.AND);
                     typeQuery.QueryExpressions.Add(x);
-                    typeQuery.QueryExpressions.Add(new FieldQuery(filter.LanguageBranch, Field.Culture));
+                    typeQuery.QueryExpressions.Add(new FieldQuery(language, Field.Culture));
 
                     contentTypeQueries.QueryExpressions.Add(typeQuery);
                 }
@@ -99,7 +101,7 @@
                 query.QueryExpressions.Add(accessRightsQuery);
             }
 
-            if (filter.ExcludeContentTypes?.Length < 1)
+            if (filter.ExcludeContentTypes == null || filter.ExcludeContentTypes.Length == 0)
                 return query;
 
             // Type Exclusions, original filters must go before excludes

@@ -1,9 +1,10 @@
-﻿using Lucene.Net.Analysis;
-using System.IO;
-
-namespace WSOL.EPiServerCms.LuceneEnhanced.Analyzers
+﻿namespace WSOL.EPiServerCms.LuceneEnhanced.Analyzers
 {
-    //TODO: https://lucenenet.apache.org/docs/3.0.3/d0/d92/_standard_analyzer_8cs_source.html, is any of this useful?
+    using Lucene.Net.Analysis;
+    using Lucene.Net.Analysis.Standard;
+    using System.IO;
+
+    // TODO: https://lucenenet.apache.org/docs/3.0.3/d0/d92/_standard_analyzer_8cs_source.html, is any of this useful?
 
     /// <summary>
     /// Tokenizes by whitespace with a lowercase filter.
@@ -17,7 +18,7 @@ namespace WSOL.EPiServerCms.LuceneEnhanced.Analyzers
         {
             TokenStream t = new WhitespaceTokenizer(reader);
             t = new LowerCaseFilter(t);
-            //t = new StandardFilter(t);
+            t = new StandardFilter(t);
 
             return t;
         }

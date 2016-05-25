@@ -201,7 +201,9 @@
     <Compile Include="BytesToStringConverter.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\SearchIndexerController.cs" />
+    <Compile Include="ExtendSearchDocument.cs" />
     <Compile Include="IBytesToStringConverter.cs" />
+    <Compile Include="IExtendSearchDocument.cs" />
     <Compile Include="IInitializeSearchAnalyzers.cs" />
     <Compile Include="Initialization\ClearSearchItemInitialization.cs" />
     <Compile Include="Initialization\DocumentAddingInitialization.cs" />
